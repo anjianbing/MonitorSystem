@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+    <!--金融数据监控测试库
+    <default-config  name="jrdataMonitorSource">
+        <property name="user">root</property>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://172.23.173.208:3306/jr_data_monitor</property>
+        <property name="initialPoolSize">3</property>
+        <property name="maxIdleTime">30</property>
+        <property name="maxPoolSize">10</property>
+        <property name="minPoolSize">3</property>
+    </default-config>
+    -->
+    <!--金融数据监控 -->
+    <!---->
+        <default-config  name="jrdataMonitorSource">
+            <property name="user">jr_data_monitor</property>
+            <property name="password">v9cd016ixcFF</property>
+            <property name="driverClass">com.mysql.jdbc.Driver</property>
+            <property name="jdbcUrl">jdbc:mysql://db-frp-01.pekdc1.jdfin.local:3306/jr_data_monitor</property>
+            <property name="initialPoolSize">3</property>
+            <property name="maxIdleTime">30</property>
+            <property name="maxPoolSize">10</property>
+            <property name="minPoolSize">3</property>
+        </default-config>
+
+    </c3p0-config>
+
+

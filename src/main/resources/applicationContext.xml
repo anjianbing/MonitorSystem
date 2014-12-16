@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/context 
+ 						   http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	   default-autowire="byName" default-lazy-init="false">
+	<bean id="sendUmMsg" class="com.jd.msg.sender.client.proxyClient.SendUmMsg">
+ 		<property name="loginHandler">
+ 			<ref bean="loginHandler"/>
+ 		</property>
+ 	</bean>
+ 		
+ 	
+ 	<bean id="loginHandler" class="com.jd.msg.sender.client.proxyClient.LoginHandler">
+ 		<property name="content">
+ 			<value>E40D832CAFF2C90C95685C28630EFEAC3DC8EC05B4A83EE26F5B18252B6CEE09A0CAD88C91A774E1D3197F7C5D91BDBF343FAD801CF08E4B5C651264A01520DD</value>
+ 		</property>
+		<property name="seed">
+ 			<value>D45A448A7D952F1F88CCE5EBE551FE9AA6FF322A21210B0D</value>
+ 		</property>
+ 		<property name="qName">
+ 			<value>http://mms.360buy.com/services/NewMessageServer</value>
+ 		</property>
+ 	</bean>
+		
+</beans>
