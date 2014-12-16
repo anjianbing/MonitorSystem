@@ -1,0 +1,58 @@
+---------------------------------------------------------------
+ CREATE TABLE `monitor_system_config` (
+  `sid` INT(11) NOT NULL COMMENT '系统id',
+  `sname` VARCHAR(50) NOT NULL COMMENT '系统名称',
+  `sdesc` VARCHAR(500) DEFAULT NULL COMMENT '系统描述',
+  `state` CHAR(1) NOT NULL COMMENT '是否有效 0有效1无效',
+  `type` VARCHAR(50) NOT NULL COMMENT '系统的业务类型如：监控业务系统日志、监控进程',
+  PRIMARY KEY (`sid`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='监控系统配置表';
+
+----------------------------------------------------
+CREATE TABLE `monitor_system_rule_config` (
+  `rid` INT(11) NOT NULL COMMENT '规则id',
+  `rname` VARCHAR(50) NOT NULL COMMENT '规则名称',
+  `rdesc` VARCHAR(500) DEFAULT NULL COMMENT '规则描述',
+  `rvalue` VARCHAR(500) DEFAULT NULL COMMENT '匹配规则内容',
+  `rrelation` CHAR(1) DEFAULT NULL COMMENT '匹配规则关系 0包含1等于2大于3小于',
+  `state` CHAR(1) NOT NULL COMMENT '是否有效 0有效1无效',
+  `sid` INT(11) NOT NULL COMMENT '系统id',
+  PRIMARY KEY (`rid`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='监控系统规则配置表';
+
+-----------------------------------------------------
+CREATE TABLE `monitor_system_user_config` (
+  `uid` INT(11) NOT NULL COMMENT '用户id',
+  `uname` VARCHAR(50) NOT NULL COMMENT '用户名称',
+  `uemail` VARCHAR(50) NOT NULL COMMENT '用户邮箱',
+  `uphone` VARCHAR(50) NOT NULL COMMENT '用户手机号',
+  `state` CHAR(1) NOT NULL COMMENT '用户状态 0有效1无效',
+  `sid` INT(11) NOT NULL COMMENT '系统id',
+  PRIMARY KEY (`uid`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='监控系统用户配置表';
+
+
+ ------------------------------------------------------
+ CREATE TABLE `monitor_system_data_info` (
+   `did` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+   `sid` int(11) DEFAULT NULL COMMENT '系统id',
+   `rid` int(11) DEFAULT NULL COMMENT '规则id',
+   `isemail` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT '是否发送邮件 0发送成功1发送失败',
+   `isphone` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT '是否发送短信 0发送成功1发送失败',
+   `error_log` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT '错误日志信息',
+   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+   `modified_date` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+   PRIMARY KEY (`did`)
+ )  ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='监控系统捕获数据表';
+
+
+--插入监控系统描述表
+insert into monitor_system_config values (1,'task_center','task_center同步任务监控','0','监控业务系统日志');
+insert into monitor_system_config values (2,'clilog_log','点击流日志任务监控','0','监控业务系统日志');
+--插入监控系统规则表
+insert into monitor_system_rule_config values (1,'error异常','error异常','error','0','0','1');
+--插入监控系统维护用户列表
+insert into monitor_system_user_config values (1,'安坚兵','anjianbing@jd.com','15801152142','0','1');
+insert into monitor_system_user_config values (2,'凌春桂','lingchungui@jd.com','18511892019','0','1');
+--插入监控系统捕获数据表
+insert into monitor_system_data_info (sid,rid,isemail,isphone,error_log) values (1,1,'0','0','error');
